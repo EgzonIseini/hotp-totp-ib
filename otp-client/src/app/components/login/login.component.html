@@ -1,0 +1,55 @@
+<div class='container-fluid h-100 d-flex align-items-center justify-content-center'>
+  <div class="h-50 w-50 bg-light d-flex flex-column align-items-center justify-content-center">
+
+    <div id="login" *ngIf="!isLoggedIn">
+      <h2>Login</h2>
+      <form [formGroup]='loginForm' (ngSubmit)='submitLoginForm()'>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">＠</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username" formControlName='username'>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">🔒</span>
+          </div>
+          <input type="password" class="form-control" placeholder="Password" formControlName='password'>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Log In
+        </button>
+
+      </form>
+
+      <alert type="danger" *ngIf='errorMessage' class='m-5'>
+        <strong>Failed logging in!</strong> {{errorMessage}}
+      </alert>
+    </div>
+
+    <div id="2fa" *ngIf="isLoggedIn && !is2FaCompleted">
+      <h2>2FA Authentication</h2>
+      <p>Before continuing you need to solve the 2FA authentication by <br> inputting the generated code from your phones authenticator APP.</p>
+
+      <form [formGroup]='twoFaForm' (ngSubmit)='submitTwoFaForm()'>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Code" formControlName='otp'>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Authenticate
+        </button>
+
+        <alert type="danger" *ngIf="twoFaErrorMessage">
+          {{this.twoFaErrorMessage}}
+        </alert>
+
+      </form>
+    </div>
+
+  </div>
+</div>

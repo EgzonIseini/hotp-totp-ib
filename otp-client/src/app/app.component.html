@@ -1,0 +1,40 @@
+<nav ngxNavbarDynamicExpand class='navbar-light bg-light'>
+  <div class='container-fluid'>
+    <a class='navbar-brand' href='#'>{{title}}</a>
+    <button
+      class='navbar-toggler'
+      type='button'
+      (click)='collapse.toggle()'
+      aria-controls='main-nav'
+      aria-expanded='false'
+      aria-label='Toggle navigation'
+    >
+      <span
+        class='
+          navbar-toggler-icon
+          d-flex
+          align-items-center
+          justify-content-center
+        '
+      >
+      </span>
+    </button>
+    <ngx-navbar-collapse id='main-nav' #collapse='ngxNavbarCollapse'>
+      <ul class='navbar-nav mr-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' routerLink=''>Home</a>
+        </li>
+        <li class='nav-item' *ngIf='!isLoggedIn'>
+          <a class='nav-link' routerLink='login'>Login</a>
+        </li>
+        <li class='nav-item' *ngIf='isLoggedIn'>
+          <a class='nav-link' routerLink='settings'>Settings</a>
+        </li>
+        <li class='nav-item' *ngIf='isLoggedIn'>
+          <a class='nav-link' (click)='logoutUser()' routerLink=''>Log out</a>
+        </li>
+      </ul>
+    </ngx-navbar-collapse>
+  </div>
+</nav>
+<router-outlet></router-outlet>

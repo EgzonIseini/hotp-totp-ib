@@ -1,0 +1,9 @@
+.btn-fail {
+  background-color: #ff6f74;
+  color: white;
+}
+
+.btn-fail.active {
+  background-color: #ce4b50;
+  color: white;
+}
